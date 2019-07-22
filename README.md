@@ -14,7 +14,7 @@ BioFormats v.6.1.1 or v 6.1.0 (https://www.openmicroscopy.org/bio-formats/) must
 For usage see main manuscript Secondary screen - Cellular brightness in mammalian cells.
 
 ## Usage
-ImageJ & FIJI macro's can be dragged and droppped on the toolbar, which opens the editor from which the macros can be started.
+ImageJ & FIJI macro's can be dragged and dropped on the toolbar, which opens the editor from which the macros can be started.
 Macros can also be loaded via Plugins->Macros menu, either use Edit or Run.
 
 ## Test data
@@ -26,8 +26,8 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 <img src="https://github.com/molcyto/MC-Ratio-Petri-dish/blob/master/Screenshot%20Macro_ratio_single10.png" width="600">
 
 ## Explanation input dialog for Macro_ratio_single10.ijm
-- Work on current image or load from directory: Here you can choose to either use the current image already displayed in ImageJ, you load a stored image, or you process an entire directory of ratio images from a petridish. In the macro it assumes an ".ics" image file extension to consider for input. This can be changed in the macro by changing the line that sets the definition of  the file extension (i.e. 'suffix=".ics";'). It assumes ratiometric files: stacks with two (RFP and CFP) or three (RFP, CFP and GFP) channels.
-- Do you want to subtract a recorded background image: if checked the macro will ask to load a recorded ratiometric background image (i.e. an image of a petridish without colonies). In case you analyze an entire directory, place this background image outside this directory.
+- Work on current image or load from directory: Here you can choose to either use the current image already displayed in ImageJ, you load a stored image, or you process an entire directory of ratio images from a Petri dish. In the macro it assumes an ".ics" image file extension to consider for input. This can be changed in the macro by changing the line that sets the definition of the file extension (see the line just below the input dialog 'suffix=".ics";'). It assumes ratiometric files: stacks with two (RFP and CFP) or three (RFP, CFP and GFP) channels.
+- Do you want to subtract a recorded background image: if checked the macro will ask to load a recorded ratiometric background image (i.e. an image of a Petri dish without colonies). In case you analyze an entire directory, place this background image outside this directory.
 - Image to threshold: You can choose the RFP or the CFP image to threshold the image for selecting colonies. 
 - Threshold for analysis of colonies: this is the lower intensity threshold for selecting colonies in the analysis.
 - Smooth input image (Gaussian radius pixels): Here you can reduce noise (and blur) the input image prior to analysis.
@@ -39,7 +39,7 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 - Course or fine image registration: Selects the course or fine adjustments in the bUnwarpJ image registration routine. It is a dummy input in case the image registration was not selected. 
 - Create colonies ROI image: if selected an output image is generated with all analyzed and numbered colony ROIs.
 - Create output colored Ratio images(s): if selected a colored ratio image is generated.
-- Maximum Red/Cyan, Red/Green, Cyan/Green ratop (3x): sets the minimal/maximal ratio for display in the colored ratio image(s). This contrast can be individually set for the three ratio images.
+- Maximum Red/Cyan, Red/Green, Cyan/Green ratio (3x): sets the minimal/maximal ratio for display in the colored ratio image(s). This contrast can be individually set for the three ratio images.
 
 ## Screenshot of input dialog for Macro_process_flatfield_v3.ijm
 <img src="https://github.com/molcyto/MC-Ratio-96-wells/blob/master/Screenshot%20macro_process_flatfield3.png" width="600">
@@ -49,7 +49,7 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 - Background: Here you can choose the background correction for the flatfield image. You can select a stored background ratiometric image (i.e. a dark ratio image with the same uniform object imaged without excitation light), a fixed background value (e.g. the camera bias), or no background correction of the flatfield image.
 - Threshold ratio for selecting boundary of flatfield image: This selects a threshold for flatfield correction if the detected fluorescence in the image of a homogeneous object is this factor lower than the maximal value detected in the respective channel. This will reject ratiometric analysis of colonies in areas of the image that suffer from strong vignetting artefacts.
 
-The flatfield macro will produce a ratiometric floating point image with a correction value per pixel by which the ratiometric images of petridish will be multiplied to correct for vignetting and filter cube dependent intensity deviations.
+The flatfield macro will produce a ratiometric floating point image with a correction value per pixel by which the ratiometric images of Petri dishes will be multiplied to correct for vignetting and filter cube dependent spatial intensity deviations.
 
 
 ## links
