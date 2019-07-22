@@ -35,7 +35,7 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 - Largest object area to analyze (pixels ^2): this determines the largest area to be still considered as a colony in number of pixels to be analyzed. 
 - Enhance colony separation with find maxima: if selected it will use an image J segmentation tool to find local maxima to better separate adjacent colonies.
 - Do image registration: If selected the channels in the ratio image will be registered to each other with bUnwarpJ to correct for pixel shifts and differential image distortions with the filter cubes and lens used.
-- Reference for image registration: Selects the reference channel (that will not be altered) for performing the image registration of the other channels. It is a dummy input in case the image registration (previous input) was not selected.
+- Reference for image registration: Selects the reference channel (the corresponding image will not be altered) for performing the image registration of the other channels. It is a dummy input in case the image registration (previous input) was not selected.
 - Course or fine image registration: Selects the course or fine adjustments in the bUnwarpJ image registration routine. It is a dummy input in case the image registration was not selected. 
 - Create colonies ROI image: if selected an output image is generated with all analyzed and numbered colony ROIs.
 - Create output colored Ratio images(s): if selected a colored ratio image is generated.
