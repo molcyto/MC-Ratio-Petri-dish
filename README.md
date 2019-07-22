@@ -52,5 +52,3 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 The flatfield macro will produce a ratiometric floating point image with a correction value per pixel by which the ratiometric images of Petri dishes will be multiplied to correct for vignetting and filter cube dependent spatial intensity deviations.
 
 
-## links
-[Visualizing heterogeneity](http://thenode.biologists.com/visualizing-heterogeneity-of-imaging-data/research/)
