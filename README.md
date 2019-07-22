@@ -22,39 +22,34 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 
 [download test data](https://zenodo.org/record/3338150/files/Testdata_SupSoftw_2-3_Ratio_petridish.zip?download=1)
 
-## Screenshot of input dialog for Macro_96wells_Ratio_v7.ijm
-<img src="https://github.com/molcyto/MC-Ratio-96-wells/blob/master/Screenshot%20Ratio_96wells_macro_v7.png" width="600">
+## Screenshot of input dialog for Macro_ratio_single10.ijm
+<img src="https://github.com/molcyto/MC-Ratio-Petri-dish/blob/master/Screenshot%20Macro_ratio_single10.png" width="600">
 
-## Explanation input dialog for Macro_96wells_Ratio_v7.ijm
-- 96 wells or 384 wells: here the well plate format can be selected.
-- Fixed background value or rolling ball background: these are options to correct for background in the ratio images. Rolling ball uses the ImageJ rolling ball (radius 100 pixels) background subtraction. Fixed uses a fixed grey value that is subtracted from each ratio image.
-- In case of fixed background, what is background intensity: In case the previous input selected 'rolling ball' this is a dummy input, otherwise it sets the background grey value that is subtracted from the images prior to analysis.
-- Fixed threshold value or modal value threshold: Here you can choose how cells are recognized in the image, either by selecting a fixed threshold intensity above which you assume there are cells, or a modal value determination that determines the modal (background) grey value and uses a statistical evaluation of pixels above this background.
-- In case of fixed threshold, what intensity over the background: in case the previous choice was fixed, this is the lower intensity threshold for selecting cells in the analysis, otherwise this is a dummy input.
-- Lower Threshold=number x Stdev + modal: In case a modal threshold was chosen for analysis, this value sets the lower intensity threshold for analysis based on the modal value + this input times the standard deviation found in the image. In case a fixed intensity threshold is chosen this is a dummy input.
-- Upper threshold: this is the upper threshold intensity for cell analysis. Pixel values above this threshold (e.g. due to overexposure) are rejected.
-- Smallest cell to analyze (pixels): this determines the smallest area in number of pixels to be analyzed. This can effectively reject small objects or cell debris interfering with the analysis.
-- Minimal circularity to analyze as cell (0.0-0.90): This option selects the minimal circularity that is required for each object detected in the image above the intensity threshold in order to be included in analysis. A value of 0.4 will automatically reject small fibers.
-- Include flatfield correction: If this box is ticked, a flatfield ratio image must be recorded and processed using the macro_process_flatfield3.ijm macro. This flatfield correction will correct for spatial differences in excitation or detection efficiencies. The flatfield image should be stored in a separate directory.
-- Normalize output for extended logfile to max CFP intensity: If selected, for each well the CFP (and RFP and/or GFP) intensity values per cell are normalized to the cell with maximal CFP intensity in the output logfile. 
-- Simple logfile with just cell average not normalized intensity: If selected, a simple logfile is created with just the average statistics per well and not all the single cell RFP, CFP (and GFP) data per well.
-- Keep cell ROIs: if selected an output image stack is generated with all analyzed cell ROIs per well.
-- Create output 96/384 well ratio image: if selected a colored ratio multiwell image is generated.
-- Low/high threshold (6x): sets the minimal/maximal ratio for display in the colored ratio image. This contrast can be individually set for the three ratio images.
-- Automatic determination of ratio thresholds: If selected, the previous 6 inputs will be overruled and the macro will scale the ratio multiwell output image according to the minimal and maximal measured ratio(s).
-- Create output 96/384 well initial intensity image: If selected, a multiwell image is added of the detected average RFP intensity. This is useful for inspecting wells with very bright or dim cells.
-- Start row/Column: In case not an entire 96 well or 384 well is screened but a subsection of the plate, the first well (row, column) can be chosen. In case a 24 well plate is used, a 24 well plate output can be made by selecting E7 as first well.
-- Acquisition in meandering mode: If selected the sequence of ratio images is assumed to be in the order A1-A12, B12-B1, C1-C12, D12-D1, E1-E12, F12-F1, G1-G12, H12-H1 for a 96 well plate. If not selected it assumes an order A1-A12, B1-B12, C1-C12, D1-D12, E1-E12, F1-F12, G1-G12, H1-H12.
+## Explanation input dialog for Macro_ratio_single10.ijm
+- Work on current image or load from directory: Here you can choose to either use the current image already displayed in ImageJ, you load a stored image, or you process an entire directort of ratio images from a petridish. In the macro it assumes an ".ics" image file extension to consider for input. This can be changed in the macro by changing the line that sets the definition of  the file extension (i.e. 'suffix=".ics";'). It assumes ratiometric files: stacks with two (RFP and CFP) or three channels (RFP, CFP and GFP).
+- Do you want to subtract a recorded background image: if checked the macro will ask to load a recorded ratiometric background image (i.e. an image of a petridish without colonies). In case you analyze an entire directory, place this background image outside this directory.
+- Image to threshold: You can choose the RFP or the CFP image to threshold the image for selecting colonies. 
+- Threshold for analysis of colonies: this is the lower intensity threshold for selecting colonies in the analysis.
+- Smooth input image (Gaussian radisu pixels): Here you can reduce noise (and blur) the input image prior to analysis.
+- Smallest object area to analyze (pixels ^2): this determines the smallest area to be still considered as a colony in number of pixels to be analyzed. 
+- Largest object area to analyze (pixels ^2): this determines the largest area to be still considered as a colony in number of pixels to be analyzed. 
+- Enhance colony separation with find maxima: if selected it will use an image J segmentation tool to find local maxima to separate adjacent colonies.
+- Do image registration: If selected the channels in the ratio image will be registered to each other with bUnwarpJ to correct for pixel shifts and differential image distortions with the filter cubes and lens used.
+- Reference for image registration: Selects the reference channel (that will not be altered) for performing the image registration of the other channels. It is a dummy input in case the image registration (previous input) was not selected.
+- Course or fine image registration: Selects the course or fine adjustments in the bUnwarpJ image registration routine. It is a dummy input in case the image registration was not selected. 
+- Create colonies ROI image: if selected an output image is generated with all analyzed and numbered colony ROIs.
+- Create output colored Ratio images(s): if selected a colored ratio image is generated.
+- Maximum Red/Cyan, Red/Green, Cyan/Green ratop (3x): sets the minimal/maximal ratio for display in the colored ratio image(s). This contrast can be individually set for the three ratio images.
 
 ## Screenshot of input dialog for Macro_process_flatfield_v3.ijm
 <img src="https://github.com/molcyto/MC-Ratio-96-wells/blob/master/Screenshot%20macro_process_flatfield3.png" width="600">
 
 ## Explanation input dialog for Macro_process_flatfield_v3.ijm
-- Work on current image or load from directory: Here you can choose to either use the current image already displayed in ImageJ as flatfield image, or you load a stored image as flatfield image. This should be a ratiometric image from a spatially uniform object (such as a fluorescent plastic slide).
+- Work on current image or load from directory: Here you can choose to either use the current image already displayed in ImageJ as flatfield image, or you load a stored image as flatfield image. This should be a ratiometric image from a spatially uniform object (such as a white piece of paper put on top of the poster tube).
 - Background: Here you can choose the background correction for the flatfield image. You can select a stored background ratiometric image (i.e. a dark ratio image with the same uniform object imaged without excitation light), a fixed background value (e.g. the camera bias), or no background correction of the flatfield image.
-- Threshold ratio for selecting boundary of flatfield image: This selects a threshold for flatfield correction if the detected fluorescence in the image of a homogeneous object is this factor lower than the maximal value detected in the respective channel. This will reject ratiometric analysis of cells in areas of the image that suffer from strong vignetting artefacts.
+- Threshold ratio for selecting boundary of flatfield image: This selects a threshold for flatfield correction if the detected fluorescence in the image of a homogeneous object is this factor lower than the maximal value detected in the respective channel. This will reject ratiometric analysis of colonies in areas of the image that suffer from strong vignetting artefacts.
 
-The flatfield macro will produce a ratiometric floating point image with a correction value per pixel by which the ratiometric images of the multiwell plate will be multiplied to correct for vignetting and filter cube dependent intensity deviations.
+The flatfield macro will produce a ratiometric floating point image with a correction value per pixel by which the ratiometric images of petridish will be multiplied to correct for vignetting and filter cube dependent intensity deviations.
 
 
 ## links
