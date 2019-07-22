@@ -30,10 +30,10 @@ Test can be downloaded from following zenodo repository : https://doi.org/10.528
 - Do you want to subtract a recorded background image: if checked the macro will ask to load a recorded ratiometric background image (i.e. an image of a petridish without colonies). In case you analyze an entire directory, place this background image outside this directory.
 - Image to threshold: You can choose the RFP or the CFP image to threshold the image for selecting colonies. 
 - Threshold for analysis of colonies: this is the lower intensity threshold for selecting colonies in the analysis.
-- Smooth input image (Gaussian radisu pixels): Here you can reduce noise (and blur) the input image prior to analysis.
+- Smooth input image (Gaussian radius pixels): Here you can reduce noise (and blur) the input image prior to analysis.
 - Smallest object area to analyze (pixels ^2): this determines the smallest area to be still considered as a colony in number of pixels to be analyzed. 
 - Largest object area to analyze (pixels ^2): this determines the largest area to be still considered as a colony in number of pixels to be analyzed. 
-- Enhance colony separation with find maxima: if selected it will use an image J segmentation tool to find local maxima to separate adjacent colonies.
+- Enhance colony separation with find maxima: if selected it will use an image J segmentation tool to find local maxima to better separate adjacent colonies.
 - Do image registration: If selected the channels in the ratio image will be registered to each other with bUnwarpJ to correct for pixel shifts and differential image distortions with the filter cubes and lens used.
 - Reference for image registration: Selects the reference channel (that will not be altered) for performing the image registration of the other channels. It is a dummy input in case the image registration (previous input) was not selected.
 - Course or fine image registration: Selects the course or fine adjustments in the bUnwarpJ image registration routine. It is a dummy input in case the image registration was not selected. 
